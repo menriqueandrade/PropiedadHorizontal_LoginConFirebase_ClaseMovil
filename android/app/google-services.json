@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "444301665609",
+    "project_id": "propiedadh-firebase",
+    "storage_bucket": "propiedadh-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444301665609:android:b832bc6fff8b9e02e7a698",
+        "android_client_info": {
+          "package_name": "com.propiedadhconfirebase.propiedadh_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444301665609-3l881dugd4ub0nse5dlpjp46v5rf5n4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDjoYhrwRMSIo-Ih56JL1XOkNib_Tm2wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444301665609-3l881dugd4ub0nse5dlpjp46v5rf5n4g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
