@@ -1,22 +1,21 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:propiedadh_firebase/app.dart';
+import 'package:propiedadh_firebase/domain/controller/autenticaciones.dart';
+import 'package:propiedadh_firebase/domain/controller/conectividad.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  Get.put(Controllerauth());
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
-      ),
-    );
-  }
+  ConnectivityController connectivityController =
+      Get.put(ConnectivityController());
+  Connectivity().onConnectivityChanged.listen((connectivityStatus) {
+    connectivityController.connectivity = connectivityStatus;
+  });
+
+  runApp(MyApp());
 }
