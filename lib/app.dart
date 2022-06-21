@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:propiedadh_firebase/ui/screens/home/home.dart';
 
 import 'ui/screens/authentication/login/login_screen.dart';
+import 'ui/screens/authentication/login/editar_perfil.dart';
 import 'ui/screens/content/content_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -16,7 +18,10 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       routes: {
         '/auth': (context) => Login(),
+        '/perfil': (context) => EditarPerfil(),
         '/content': (context) => Principal(),
+        '/home': (context) => Home(),
+        
       },
       home: Login(),
     );

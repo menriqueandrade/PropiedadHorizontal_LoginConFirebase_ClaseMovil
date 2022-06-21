@@ -9,11 +9,19 @@ class Controllerauth extends GetxController {
   late Rx<dynamic> _usuarior = "Sin Registro".obs;
   late Rx<dynamic> _uid = "".obs;
   late Rx<dynamic> _name = "".obs;
+   late Rx<dynamic> _nombrelog = "".obs;
+   late Rx<dynamic> _apellidolog = "".obs;
+   late Rx<dynamic> _direccionlog = "".obs;
+   late Rx<dynamic> _telefonolog = "".obs;
   late Rx<dynamic> _photo = "".obs;
 
   String get emailf => _usuarior.value;
   String get uid => _uid.value;
   String get name => _name.value;
+  String get nombre_user => _nombrelog.value;
+  String get apellido_user => _apellidolog.value;
+  String get direccion_user => _direccionlog.value;
+  String get telefono_user => _telefonolog.value;
   String get photo => _photo.value;
 
   Future<void> registrarEmail(dynamic _email, dynamic _passw) async {
@@ -24,6 +32,13 @@ class Controllerauth extends GetxController {
       _usuarior.value = usuario.user!.email;
       _uid.value = usuario.user!.uid;
       _name.value = usuario.user!.email;
+      _nombrelog.value = usuario.user!.email;
+      _apellidolog.value = usuario.user!.email;
+      _direccionlog.value = usuario.user!.email;
+      _telefonolog.value = usuario.user!.email;
+
+
+
       _photo.value = 'https://image.flaticon.com/icons/png/512/17/17004.png';
 
       await guardarusuario(_usuarior.value, _passw);
@@ -87,4 +102,9 @@ class Controllerauth extends GetxController {
     localuser.setString('pass', pass);
     print(localuser.getString('usuario'));
   }
+
+
+  Future<void> _signOut() async {
+  await auth.signOut();
+}
 }

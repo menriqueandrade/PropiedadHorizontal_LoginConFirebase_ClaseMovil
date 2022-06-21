@@ -77,7 +77,7 @@ class _LoginState extends State<Login> {
       //  Get.to(() => ListaMensajes());
       //Get.to(() => ListaMensajeros2(title: 'Titulo'));
       if (controluser.emailf != 'Sin Registro') {
-        Get.offNamed('/content');
+        Get.offNamed('/home');
       } else {
         Get.snackbar(
           "Login",
