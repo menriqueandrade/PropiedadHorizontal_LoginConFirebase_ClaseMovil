@@ -53,4 +53,13 @@ class PeticionesFotos {
     });
     //return true;
   }
+
+  Stream<QuerySnapshot> Consulta(String uid) {
+    Query<Map<String, dynamic>> listado = _db
+        .collection('usuarios_existentes')
+        //.where('estado', isEqualTo: 'A')
+        .where('id_user', isEqualTo: uid);
+
+    return listado.snapshots();
+  }
 }

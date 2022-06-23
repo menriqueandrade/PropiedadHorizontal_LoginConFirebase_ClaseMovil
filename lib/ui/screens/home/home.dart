@@ -7,6 +7,9 @@ import 'package:propiedadh_firebase/ui/screens/authentication/login/perfil_guard
 import 'package:propiedadh_firebase/ui/screens/authentication/login/editar_perfil.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/listado_juntaadministrativa.dart';
 
+import 'screens/copropietarios_screens/agregar_coopropietarios.dart';
+import 'screens/copropietarios_screens/listado_coopropietarios.dart';
+import 'screens/gestion_pagos/gestion_pagos_screen.dart';
 import 'screens/juntaadministrativa_screens/agregar_juntaadministrativa.dart';
 
 
@@ -74,11 +77,11 @@ class _HomeState extends State<Home> {
               SizedBox(
                 height: 30,
               ),
-              _UsuariosCard(),
+              _CoopropietariosCard(),
               SizedBox(
                 height: 30,
               ),
-              _PropietariosCard(),
+              GestionDePagos(),
             ],
           ),
         ),
@@ -133,8 +136,8 @@ class _JuntaAdminCard extends StatelessWidget {
   }
 }
 
-class _UsuariosCard extends StatelessWidget {
-  const _UsuariosCard({
+class _CoopropietariosCard extends StatelessWidget {
+  const _CoopropietariosCard({
     Key? key,
   }) : super(key: key);
 
@@ -142,7 +145,7 @@ class _UsuariosCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-      
+      Get.to(() => Listado_Coopropietarios());
       },
       child: Container(
         width: double.infinity,
@@ -151,7 +154,7 @@ class _UsuariosCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
             color: Colors.lightBlueAccent,
             image: DecorationImage(
-                image: AssetImage('assets/usuarios.png'), fit: BoxFit.fill)),
+                image: AssetImage('assets/propietarios.png'), fit: BoxFit.fill)),
         child: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(begin: Alignment.bottomRight, colors: [
@@ -162,7 +165,7 @@ class _UsuariosCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Usuarios",
+                "Coopropietarios",
                 style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
                     fontSize: 25,
@@ -179,8 +182,8 @@ class _UsuariosCard extends StatelessWidget {
   }
 }
 
-class _PropietariosCard extends StatelessWidget {
-  const _PropietariosCard({
+class GestionDePagos extends StatelessWidget {
+  const GestionDePagos({
     Key? key,
   }) : super(key: key);
 
@@ -188,6 +191,7 @@ class _PropietariosCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+          Get.to(() => GestionPagosScreen());
        
       },
       child: Container(
@@ -209,7 +213,7 @@ class _PropietariosCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Propietarios",
+                "Gestion de Pagos",
                 style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
                     fontSize: 25,

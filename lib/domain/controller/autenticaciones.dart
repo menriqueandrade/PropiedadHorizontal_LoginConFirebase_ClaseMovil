@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -9,10 +10,10 @@ class Controllerauth extends GetxController {
   late Rx<dynamic> _usuarior = "Sin Registro".obs;
   late Rx<dynamic> _uid = "".obs;
   late Rx<dynamic> _name = "".obs;
-   late Rx<dynamic> _nombrelog = "".obs;
-   late Rx<dynamic> _apellidolog = "".obs;
-   late Rx<dynamic> _direccionlog = "".obs;
-   late Rx<dynamic> _telefonolog = "".obs;
+  late Rx<dynamic> _nombrelog = "".obs;
+  late Rx<dynamic> _apellidolog = "".obs;
+  late Rx<dynamic> _direccionlog = "".obs;
+  late Rx<dynamic> _telefonolog = "".obs;
   late Rx<dynamic> _photo = "".obs;
 
   String get emailf => _usuarior.value;
@@ -36,8 +37,6 @@ class Controllerauth extends GetxController {
       _apellidolog.value = usuario.user!.email;
       _direccionlog.value = usuario.user!.email;
       _telefonolog.value = usuario.user!.email;
-
-
 
       _photo.value = 'https://image.flaticon.com/icons/png/512/17/17004.png';
 
@@ -103,8 +102,5 @@ class Controllerauth extends GetxController {
     print(localuser.getString('usuario'));
   }
 
-
-  Future<void> _signOut() async {
-  await auth.signOut();
-}
+  
 }

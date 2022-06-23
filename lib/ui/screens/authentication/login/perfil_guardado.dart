@@ -94,10 +94,10 @@ class _Perfil_LogueadoState extends State<Perfil_Guardado> {
               ),
               Text(controluser.nombre_user),
               Text(controluser.apellido_user),Text(controluser.direccion_user),Text(controluser.telefono_user),
-              TextField(
-                controller: controlApellido,
-                decoration: InputDecoration(labelText: "Correo :",prefixText:  controluser.name),
-              ),
+              // TextField(
+              //   controller: controlApellido,
+              //   decoration: InputDecoration(labelText: "Correo :",prefixText:  controluser.name),
+              // ),
               TextField(
                 controller: controlNombre,
                 decoration: InputDecoration(labelText: "Nombre",prefixText: controluser.nombre_user),
@@ -119,7 +119,7 @@ class _Perfil_LogueadoState extends State<Perfil_Guardado> {
                 onPressed: () {
                   var catalogo = <String, dynamic>{
                     'id_user': controluser.uid,
-                    'nombre': controlNombre.text,
+                    'nombre': controluser.nombre_user,
                     'apellido': controlApellido.text,
                     'direccion': controlDireccion.text,
                     'telefono': controlTelefono.text,
@@ -140,8 +140,9 @@ class _Perfil_LogueadoState extends State<Perfil_Guardado> {
               ElevatedButton(
                 child: Text("Cerrar sesion"),
                 onPressed: () async {
-                  await signOut();
-                   Get.to(() => Login());
+                  await controluser.logOut();
+                 Get.to(() => Login());
+
                 }, 
               )
             ],
