@@ -59,7 +59,7 @@ class _PagoAdministracionScreenState extends State<PagoAdministracionScreen> {
                         color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
-                      child: Icon(Icons.check),
+                      child: Icon(Icons.payments_sharp),
                     ),
                   ),
                 ),

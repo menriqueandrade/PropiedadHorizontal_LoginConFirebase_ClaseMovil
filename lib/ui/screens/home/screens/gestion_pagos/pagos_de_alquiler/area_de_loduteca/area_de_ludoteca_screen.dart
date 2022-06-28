@@ -53,7 +53,7 @@ class _AreadeLudotecaScreenState extends State<AreadeLudotecaScreen> {
                     color: Colors.lightBlue,
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
-                  child: Icon(Icons.check),
+                  child: Icon(Icons.toys),
                 ),
               ),
             ),
@@ -96,7 +96,7 @@ class _AreadeLudotecaScreenState extends State<AreadeLudotecaScreen> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: ListTile(
-                  title: Text("Area de Ludoteca"),
+                  title: Text("Area de Ludoteca" ,style: TextStyle(fontWeight: FontWeight.bold),),
                   subtitle: Text(
                       ""),
                 ),

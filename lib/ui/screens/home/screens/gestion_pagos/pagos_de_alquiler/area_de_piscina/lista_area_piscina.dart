@@ -69,17 +69,17 @@ class _ListaAreaPiscinaScreenState extends State<ListaAreaPiscinaScreen> {
       body: obtenerInformacion(
           context, variableshabitantespazysalvo.ConsultarAlquilerPiscina()),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            Get.to(() => AgregarCoopropietarios());
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     setState(() {
+      //       Get.to(() => AgregarCoopropietarios());
 
-            //obtenerInformacion(context, variablesjuntaadmin.readItemsJuntaAdmin());
-          });
-        },
-        tooltip: 'Crear usuario juntaAdmin',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      //       //obtenerInformacion(context, variablesjuntaadmin.readItemsJuntaAdmin());
+      //     });
+      //   },
+      //   tooltip: 'Crear usuario juntaAdmin',
+      //   child: Icon(Icons.add),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

@@ -54,7 +54,7 @@ class _PagosDeAlquilerState extends State<PagosDeAlquiler> {
                     color: Colors.lightBlue,
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
-                  child: Icon(Icons.check),
+                  child: Icon(Icons.payments),
                 ),
               ),
             ),
@@ -85,7 +85,7 @@ class _PagosDeAlquilerState extends State<PagosDeAlquiler> {
                         ),
                         Text(
                           "SALON DE EVENTOS",
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold),
                         )
                       ])),
                 ),
@@ -119,7 +119,7 @@ class _PagosDeAlquilerState extends State<PagosDeAlquiler> {
                         ),
                         Text(
                           "AREA DE PISCINA",
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold),
                         )
                       ])),
                 ),
@@ -150,7 +150,7 @@ class _PagosDeAlquilerState extends State<PagosDeAlquiler> {
                         ),
                         Text(
                           "CANCHA DEPORTIVA",
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold),
                         )
                       ])),
                 ),
@@ -181,7 +181,7 @@ class _PagosDeAlquilerState extends State<PagosDeAlquiler> {
                         ),
                         Text(
                           "AREA DE LUDOTECA",
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold),
                         )
                       ])),
                 ),

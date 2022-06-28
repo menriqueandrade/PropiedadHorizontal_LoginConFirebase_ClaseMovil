@@ -55,7 +55,7 @@ class _GestionPagosScreenState extends State<GestionPagosScreen> {
                       color: Colors.lightBlue,
                       borderRadius: BorderRadius.circular(10)),
                   child: Center(
-                    child: Icon(Icons.check),
+                    child: Icon(Icons.payments),
                   ),
                 ),
               ),
@@ -86,8 +86,8 @@ class _GestionPagosScreenState extends State<GestionPagosScreen> {
                           ),
                         ),
                         Text(
-                          "Pago de Administracion",
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          "Pago Administracion",
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold),
                         )
                       ])),
                 ),
@@ -121,7 +121,7 @@ class _GestionPagosScreenState extends State<GestionPagosScreen> {
                         ),
                         Text(
                           "Pagos de Alquiler",
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontWeight: FontWeight.bold),
                         )
                       ])),
                 ),
@@ -156,7 +156,7 @@ class _GestionPagosScreenState extends State<GestionPagosScreen> {
                         ),
                         Text(
                           "Habitantes paz y salvo",
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold),
                         )
                       ])),
                 ),
@@ -190,7 +190,7 @@ class _GestionPagosScreenState extends State<GestionPagosScreen> {
                         ),
                         Text(
                           "Habitantes Morosos",
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold),
                         )
                       ])),
                 ),

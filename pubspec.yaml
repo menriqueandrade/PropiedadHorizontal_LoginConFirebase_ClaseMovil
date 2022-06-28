@@ -45,6 +45,7 @@ dependencies:
   firebase_storage: 10.0.6
   printing: ^5.6.0
   uuid: ^3.0.4
+  smooth_page_indicator: any
   
 
 dev_dependencies:
@@ -88,6 +89,8 @@ flutter:
     - assets/image.png
     - assets/pagos.png
     - assets/chat.png
+    - assets/logou.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

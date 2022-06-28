@@ -53,7 +53,7 @@ class _AreadePiscinaScreenState extends State<AreadePiscinaScreen> {
                         color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
-                      child: Icon(Icons.check),
+                      child: Icon(Icons.pool),
                     ),
                   ),
                 ),
@@ -96,7 +96,7 @@ class _AreadePiscinaScreenState extends State<AreadePiscinaScreen> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: ListTile(
-                  title: Text("Area de Piscina"),
+                  title: Text("Area de Piscina", style: TextStyle(fontWeight: FontWeight.bold),),
                   subtitle: Text("Piscina limpia y bien cuidada de 14x7. Con hidromasaje y jacuzzi incluido. 3 tumbonas y asiento para 14 personas. BBQ de obra gigante. Aseo individual. Ducha.Numero de personas mínimo entre semana: 6. Numero de personas máximo:14 Numero de personas mínimo en fin de semana: 8. Numero de personas máximo:14"),
                 ),
               ),

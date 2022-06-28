@@ -50,7 +50,7 @@ class _CanchaDeportivaScreenState extends State<CanchaDeportivaScreen> {
                         color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
-                      child: Icon(Icons.check),
+                      child: Icon(Icons.sports_soccer),
                     ),
                   ),
                 ),
@@ -93,7 +93,7 @@ class _CanchaDeportivaScreenState extends State<CanchaDeportivaScreen> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: ListTile(
-                  title: Text("Cancha deportiva"),
+                  title: Text("Cancha deportiva",style: TextStyle(fontWeight: FontWeight.bold),),
                   subtitle: Text("Recuerda que tienes 5 días hábiles contados a partir de la fecha de tu compra, para ejercer el derecho de retracto. Aplica cuando el servicio no se hubiese comenzado a ejecutar o cuando su ejecución no sea anterior a 5 días hábiles."),
                 ),
               ),

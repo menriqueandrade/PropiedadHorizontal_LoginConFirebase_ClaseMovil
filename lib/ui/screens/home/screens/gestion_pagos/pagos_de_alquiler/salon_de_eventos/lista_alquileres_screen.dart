@@ -40,17 +40,17 @@ class _ListaDeAlquileresScreenState extends State<ListaDeAlquileresScreen> {
       body: obtenerInformacion(
           context, variableshabitantespazysalvo.ConsultarAlquilerSalonEvento()),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            Get.to(() => AgregarCoopropietarios());
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     setState(() {
+      //       Get.to(() => AgregarCoopropietarios());
 
-            //obtenerInformacion(context, variablesjuntaadmin.readItemsJuntaAdmin());
-          });
-        },
-        tooltip: 'Crear usuario juntaAdmin',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      //       //obtenerInformacion(context, variablesjuntaadmin.readItemsJuntaAdmin());
+      //     });
+      //   },
+      //   tooltip: 'Crear usuario juntaAdmin',
+      //   child: Icon(Icons.add),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

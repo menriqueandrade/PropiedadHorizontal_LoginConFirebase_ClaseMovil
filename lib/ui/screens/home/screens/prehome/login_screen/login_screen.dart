@@ -1,24 +1,22 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, avoid_print, unused_field, non_constant_identifier_names, unused_local_variable, prefer_final_fields, unused_label
+
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:propiedadh_firebase/domain/controller/autenticaciones.dart';
 import 'package:propiedadh_firebase/domain/controller/conectividad.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Login extends StatefulWidget {
-  Login({Key? key}) : super(key: key);
-
+class LoginScreen extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailuser = TextEditingController();
   TextEditingController passwuser = TextEditingController();
-
   Controllerauth controluser = Get.find();
   late ConnectivityController connectivityController;
 
@@ -101,77 +99,65 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(50.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // CircleAvatar(
-              //     radius: 100.0,
-              //     backgroundImage: NetworkImage(
-              //         'https://login.gov/assets/img/login-gov-288x288.png')),
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: emailuser,
-                decoration: InputDecoration(hintText: 'Ingrese el Email'),
-              ),
-              TextField(
-                controller: passwuser,
-                obscureText: true,
-                decoration: InputDecoration(hintText: 'Password'),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Login',
+        home: Scaffold(
+          extendBodyBehindAppBar: true,
+          body: Center(
+            child: Padding(
+              padding: EdgeInsets.all(50.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        if (connectivityController.connected) {
-                          _inicio(emailuser.text, passwuser.text);
-                        } else {
-                          GetSnackBar(
-                            title: 'No esta conectado a un Red',
-                            duration: Duration(seconds: 5),
-                          );
-                        }
-                      },
-                      icon: Icon(Icons.login)),
-                  IconButton(
-                      onPressed: () {
-                        if (connectivityController.connected) {
-                          _login(emailuser.text, passwuser.text);
-                        } else {
-                          GetSnackBar(
-                            title: 'No esta conectado a un Red',
-                            duration: Duration(seconds: 5),
-                          );
-                        }
-                      },
-                      icon: Icon(Icons.app_registration))
+                  CircleAvatar(
+                      radius: 200.0,
+                      backgroundImage: AssetImage('assets/logou.jpg')),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    controller: emailuser,
+                    decoration: InputDecoration(hintText: 'Ingrese el Email'),
+                  ),
+                  TextField(
+                    controller: passwuser,
+                    obscureText: true,
+                    decoration: InputDecoration(hintText: 'Password'),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            if (connectivityController.connected) {
+                              _inicio(emailuser.text, passwuser.text);
+                            } else {
+                              GetSnackBar(
+                                title: 'No esta conectado a un Red',
+                                duration: Duration(seconds: 5),
+                              );
+                            }
+                          },
+                          icon: Icon(Icons.login,color: Colors.blueAccent,)),
+                      IconButton(
+                          onPressed: () {
+                            if (connectivityController.connected) {
+                              _login(emailuser.text, passwuser.text);
+                            } else {
+                              GetSnackBar(
+                                title: 'No esta conectado a un Red',
+                                duration: Duration(seconds: 5),
+                              );
+                            }
+                          },
+                          icon: Icon(Icons.app_registration_rounded,color: Colors.blueAccent))
+                    ],
+                  )
                 ],
-              )
-            ],
+              ),
+            ),
           ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          if (connectivityController.connected) {
-          } else {
-            GetSnackBar(
-              title: 'No esta conectado a un Red',
-              duration: Duration(seconds: 5),
-            );
-          }
-        },
-        child: FaIcon(
-          FontAwesomeIcons.google,
-          color: Colors.white,
-        ),
-      ),
-    );
+        ));
   }
 }

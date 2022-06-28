@@ -18,45 +18,46 @@ class _SalondeEventosScreenState extends State<SalondeEventosScreen> {
       title: 'Material App',
       home: Scaffold(
           appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Row(
-          children: [
-            Container(
-              height: 60,
-              width: 50,
-              child: IconButton(
-                onPressed: () {
-   Get.back();
-                },
-                icon: Icon(
-                  Icons.arrow_back,
-                ),
-                color: Colors.lightBlue,
-              ),
-            ),
-          ],
-        ),
-        title: Center(
-            child: Text("Salon de eventos", style: TextStyle(color: Colors.lightBlue))),
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.all(0.0),
-            child: Center(
-              child: Container(
-                width: 50,
-                height: 40,
-                decoration: BoxDecoration(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: Row(
+              children: [
+                Container(
+                  height: 60,
+                  width: 50,
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                    ),
                     color: Colors.lightBlue,
-                    borderRadius: BorderRadius.circular(10)),
+                  ),
+                ),
+              ],
+            ),
+            title: Center(
+                child: Text("Salon de eventos",
+                    style: TextStyle(color: Colors.lightBlue,))),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(0.0),
                 child: Center(
-                  child: Icon(Icons.check),
+                  child: Container(
+                    width: 50,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlue,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                      child: Icon(Icons.check),
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               Get.to(() => ListaDeAlquileresScreen());
@@ -93,7 +94,7 @@ class _SalondeEventosScreenState extends State<SalondeEventosScreen> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: ListTile(
-                  title: Text("Salon de eventos"),
+                  title: Text("Salon de eventos", style: TextStyle(fontWeight: FontWeight.bold),),
                   subtitle: Text(
                       "Salón de Eventos les brinda un cómodo espacio para compartir con sus familiares y amigos, uno de los mejores momentos de sus vidas. En el lugar les brindará atención personalizada y una serie de servicios para que ese gran día se desarrolle como desean. No duden en conocer las facilidades que tienen en este lugar para organizar su boda. "),
                 ),
@@ -109,9 +110,11 @@ class _SalondeEventosScreenState extends State<SalondeEventosScreen> {
                             informacionUser(context);
                           },
                           child: Text("Alquilar")),
-                      ElevatedButton(onPressed: () {
-                      Get.back();
-                      }, child: Text("Salir"))
+                      ElevatedButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          child: Text("Salir"))
                     ],
                   ),
                 ],
