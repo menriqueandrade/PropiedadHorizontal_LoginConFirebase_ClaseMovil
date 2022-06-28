@@ -8,6 +8,7 @@ class PeticionesCoop extends GetxController {
   
   late Rx<dynamic> _user = "".obs;
   String get user => _user.value;
+
   Stream<QuerySnapshot> readItemsCoopropietarios() {
     CollectionReference listado = _db.collection('coopropietarios');
 
@@ -47,6 +48,38 @@ class PeticionesCoop extends GetxController {
     CollectionReference listado = _db.collection('coopropietarios');
 
     final listmorosos = listado.where("pagoscoopropietarios", whereIn: ["Pendiente por pago"]);
+
+    return listmorosos.snapshots();
+  }
+
+  Stream<QuerySnapshot> ConsultaFacturaUsuario() {
+    CollectionReference listado = _db.collection('coopropietarios');
+
+    final listmorosos = listado.where("nombrecoopropietarios",);
+
+    return listmorosos.snapshots();
+  }
+
+
+  Stream<QuerySnapshot> ConsultarAlquilerSalonEvento() {
+    CollectionReference listado = _db.collection('coopropietarios');
+
+    final listmorosos = listado.where("nombreservicioalquiler", whereIn: ["Salon de eventos"]);
+
+    return listmorosos.snapshots();
+  }
+
+   Stream<QuerySnapshot> ConsultarAlquilerPiscina() {
+    CollectionReference listado = _db.collection('coopropietarios');
+
+    final listmorosos = listado.where("nombreservicioalquiler", whereIn: ["Area de piscina"]);
+
+    return listmorosos.snapshots();
+  }
+  Stream<QuerySnapshot> ConsultarAlquilerLoduteca() {
+    CollectionReference listado = _db.collection('coopropietarios');
+
+    final listmorosos = listado.where("nombreservicioalquiler", whereIn: ["Area de ludoteca"]);
 
     return listmorosos.snapshots();
   }

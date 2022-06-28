@@ -5,17 +5,21 @@ import 'package:propiedadh_firebase/services/coopropietarios_services/search_coo
 import 'package:propiedadh_firebase/services/juntaadministrativa_services.dart';
 import 'package:propiedadh_firebase/services/search.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/copropietarios_screens/agregar_coopropietarios.dart';
+import 'package:propiedadh_firebase/ui/screens/home/screens/gestion_pagos/pagos_de_alquiler/area_de_loduteca/agregar_alquiler_ludoteca.dart';
+import 'package:propiedadh_firebase/ui/screens/home/screens/gestion_pagos/pagos_de_alquiler/area_de_piscina/agregar_alquiler_psicina_screen.dart';
+import 'package:propiedadh_firebase/ui/screens/home/screens/gestion_pagos/pagos_de_alquiler/salon_de_eventos/agregar_alquiler_salonevento_screen.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/agregar_juntaadministrativa.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/editar_juntaadministrativa.dart';
 
-class Listado_Coopropietarios extends StatefulWidget {
+class SeleccionarResidenteParaAlquilarLudotecaScreen extends StatefulWidget {
   @override
-  _Listado_CoopropietariosState createState() =>
-      _Listado_CoopropietariosState();
+  _SeleccionarResidenteParaAlquilarLudotecaScreenState createState() =>
+      _SeleccionarResidenteParaAlquilarLudotecaScreenState();
 }
 
-class _Listado_CoopropietariosState extends State<Listado_Coopropietarios> {
-  PeticionesCoop variablescoop = Get.find();
+class _SeleccionarResidenteParaAlquilarLudotecaScreenState
+    extends State<SeleccionarResidenteParaAlquilarLudotecaScreen> {
+  PeticionesCoop variableshabitantesmorosos = Get.find();
 
   @override
   void initState() {
@@ -25,62 +29,61 @@ class _Listado_CoopropietariosState extends State<Listado_Coopropietarios> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            leading: Row(
-              children: [
-                Container(
-                  height: 60,
-                  width: 50,
-                  child: IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                    ),
-                    color: Colors.lightBlue,
-                  ),
+       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Row(
+          children: [
+            Container(
+              height: 60,
+              width: 50,
+              child: IconButton(
+                onPressed: () {
+        Get.back();
+                },
+                icon: Icon(
+                  Icons.arrow_back,
                 ),
-              ],
+                color: Colors.lightBlue,
+              ),
             ),
-            title: Center(
-                child: Text("Listado de Coopropietarios",
-                    style: TextStyle(color: Colors.lightBlue))),
-            actions: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(0.0),
+          ],
+        ),
+        title: Center(
+            child: Text("Seleccion de usuario", style: TextStyle(color: Colors.lightBlue))),
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(0.0),
+            child: Center(
+              child: Container(
+                width: 50,
+                height: 40,
+                decoration: BoxDecoration(
+                    color: Colors.lightBlue,
+                    borderRadius: BorderRadius.circular(10)),
                 child: Center(
-                  child: Container(
-                    width: 50,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                      child: Icon(Icons.check),
-                    ),
-                  ),
+                  child: Icon(Icons.check),
                 ),
               ),
-            ],
+            ),
           ),
+        ],
+      ),
 
       body: obtenerInformacion(
-          context, variablescoop.readItemsCoopropietarios()),
+          context, variableshabitantesmorosos.ConsultarHabitantesPazySalvo()),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            Get.to(() => AgregarCoopropietarios());
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     setState(() {
+      //       Get.to(() => AgregarCoopropietarios());
 
-            //obtenerInformacion(context, variablesjuntaadmin.readItemsJuntaAdmin());
-          });
-        },
-        tooltip: 'Crear usuario juntaAdmin',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      //       //obtenerInformacion(context, variablesjuntaadmin.readItemsJuntaAdmin());
+      //     });
+      //   },
+      //   tooltip: 'Crear usuario juntaAdmin',
+      //   child: Icon(Icons.add),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
@@ -104,8 +107,7 @@ Widget obtenerInformacion(BuildContext context, Stream<QuerySnapshot> ct) {
           if (snapshot.hasError) return Text('Error: ${snapshot.error}');
           // print(snapshot.data);
           return snapshot.data != null
-              ? VistaCoopropietarios(
-                  coopropietarios: snapshot.data!.docs)
+              ? VistaCoopropietarios(coopropietarios: snapshot.data!.docs)
               : Text('Sin Datos');
 
         /*
@@ -129,26 +131,20 @@ class VistaCoopropietarios extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount:
-            coopropietarios.length == 0 ? 0 : coopropietarios.length,
+        itemCount: coopropietarios.length == 0 ? 0 : coopropietarios.length,
         itemBuilder: (context, posicion) {
-          print(coopropietarios[posicion].id);
           // print(juntaadministrativa[posicion].nombre);
           return ListTile(
             onTap: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (BuildContext context) =>
-              //             ModificarJuntaAdministrativa(
-              //                 perfil: juntaadministrativa,
-              //                 pos: posicion,
-              //                 iddoc: juntaadministrativa[posicion].id)));
+               Get.to(() => AgregarAlquilerLudotecaUser(
+                   perfil: coopropietarios,
+                   pos: posicion,
+                   iddoc: coopropietarios[posicion].id));
             },
             onLongPress: () {
-              // //   ServicesJuntaAdministrativa.eliminarJuntaAdmin(juntaadministrativa[posicion].id);
-              // confirmaeliminarUsuario(
-              //     context, coopropietarios[posicion].id);
+              // ServicesJuntaAdministrativa.eliminarJuntaAdmin(
+              //     juntaadministrativa[posicion].id);
+              // confirmaeliminarUsuario(context, coopropietarios[posicion].id);
             },
             leading: CircleAvatar(
                 child: FlutterLogo(
@@ -156,15 +152,14 @@ class VistaCoopropietarios extends StatelessWidget {
             )),
             title: Text(coopropietarios[posicion]['nombrecoopropietarios']),
             subtitle: Text(coopropietarios[posicion]['pagoscoopropietarios']),
-             trailing: Column(
-               children:<Widget> [
+            trailing: Column(
+              children: <Widget>[
                 Text("Casa"),
-                Text(coopropietarios[posicion]['numeroviviendacoopropietarios']),
-                 
-               ],
-             ),
+                Text(
+                    coopropietarios[posicion]['numeroviviendacoopropietarios']),
+              ],
+            ),
           );
-
         });
   }
 

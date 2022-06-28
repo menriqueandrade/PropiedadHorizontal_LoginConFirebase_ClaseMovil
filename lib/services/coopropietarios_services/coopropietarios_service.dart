@@ -3,6 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class ServicesCoopropietarios extends GetxController {
+
+  late Rx<dynamic> _nombrelog = "".obs;
+   String get nombre_user => _nombrelog.value;
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
 
    Stream<QuerySnapshot> readItems() {

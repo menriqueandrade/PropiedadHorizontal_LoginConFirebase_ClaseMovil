@@ -6,6 +6,7 @@ import 'package:propiedadh_firebase/app.dart';
 import 'package:propiedadh_firebase/domain/controller/autenticaciones.dart';
 import 'package:propiedadh_firebase/domain/controller/conectividad.dart';
 
+import 'services/coopropietarios_services/coopropietarios_service.dart';
 import 'services/coopropietarios_services/search_coopropietarios.dart';
 import 'services/search.dart';
 
@@ -15,7 +16,7 @@ void main() async {
   Get.put(Controllerauth());
   Get.put(Peticiones2());
   Get.put(PeticionesCoop());
-
+Get.put(ServicesCoopropietarios());
   ConnectivityController connectivityController =
       Get.put(ConnectivityController());
   Connectivity().onConnectivityChanged.listen((connectivityStatus) {
@@ -24,4 +25,3 @@ void main() async {
 
   runApp(MyApp());
 }
-  

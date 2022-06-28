@@ -8,14 +8,14 @@ import 'package:propiedadh_firebase/ui/screens/home/screens/copropietarios_scree
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/agregar_juntaadministrativa.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/editar_juntaadministrativa.dart';
 
-class Listado_Coopropietarios extends StatefulWidget {
+class ListaAreaPiscinaScreen extends StatefulWidget {
   @override
-  _Listado_CoopropietariosState createState() =>
-      _Listado_CoopropietariosState();
+  _ListaAreaPiscinaScreenState createState() =>
+      _ListaAreaPiscinaScreenState();
 }
 
-class _Listado_CoopropietariosState extends State<Listado_Coopropietarios> {
-  PeticionesCoop variablescoop = Get.find();
+class _ListaAreaPiscinaScreenState extends State<ListaAreaPiscinaScreen> {
+  PeticionesCoop variableshabitantespazysalvo = Get.find();
 
   @override
   void initState() {
@@ -25,50 +25,49 @@ class _Listado_CoopropietariosState extends State<Listado_Coopropietarios> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            leading: Row(
-              children: [
-                Container(
-                  height: 60,
-                  width: 50,
-                  child: IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                    ),
-                    color: Colors.lightBlue,
-                  ),
+       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Row(
+          children: [
+            Container(
+              height: 60,
+              width: 50,
+              child: IconButton(
+                onPressed: () {
+        Get.back();
+                },
+                icon: Icon(
+                  Icons.arrow_back,
                 ),
-              ],
+                color: Colors.lightBlue,
+              ),
             ),
-            title: Center(
-                child: Text("Listado de Coopropietarios",
-                    style: TextStyle(color: Colors.lightBlue))),
-            actions: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(0.0),
+          ],
+        ),
+        title: Center(
+            child: Text("Lista de alquileres vigentes", style: TextStyle(color: Colors.lightBlue))),
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(0.0),
+            child: Center(
+              child: Container(
+                width: 50,
+                height: 40,
+                decoration: BoxDecoration(
+                    color: Colors.lightBlue,
+                    borderRadius: BorderRadius.circular(10)),
                 child: Center(
-                  child: Container(
-                    width: 50,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                      child: Icon(Icons.check),
-                    ),
-                  ),
+                  child: Icon(Icons.check),
                 ),
               ),
-            ],
+            ),
           ),
+        ],
+      ),
 
       body: obtenerInformacion(
-          context, variablescoop.readItemsCoopropietarios()),
+          context, variableshabitantespazysalvo.ConsultarAlquilerPiscina()),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -155,7 +154,7 @@ class VistaCoopropietarios extends StatelessWidget {
               size: 30,
             )),
             title: Text(coopropietarios[posicion]['nombrecoopropietarios']),
-            subtitle: Text(coopropietarios[posicion]['pagoscoopropietarios']),
+            subtitle: Text(coopropietarios[posicion]['nombreservicioalquiler']),
              trailing: Column(
                children:<Widget> [
                 Text("Casa"),
@@ -164,7 +163,7 @@ class VistaCoopropietarios extends StatelessWidget {
                ],
              ),
           );
-
+        
         });
   }
 

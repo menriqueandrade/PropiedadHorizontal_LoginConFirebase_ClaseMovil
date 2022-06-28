@@ -8,16 +8,14 @@ import 'package:propiedadh_firebase/ui/screens/home/screens/copropietarios_scree
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/agregar_juntaadministrativa.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/editar_juntaadministrativa.dart';
 
-import 'pago_residente_moroso_screen.dart';
-
-class ResidentesMorososScreen extends StatefulWidget {
+class ListaDeAlquileresScreen extends StatefulWidget {
   @override
-  _ResidentesMorososScreenState createState() =>
-      _ResidentesMorososScreenState();
+  _ListaDeAlquileresScreenState createState() =>
+      _ListaDeAlquileresScreenState();
 }
 
-class _ResidentesMorososScreenState extends State<ResidentesMorososScreen> {
-  PeticionesCoop variableshabitantesmorosos = Get.find();
+class _ListaDeAlquileresScreenState extends State<ListaDeAlquileresScreen> {
+  PeticionesCoop variableshabitantespazysalvo = Get.find();
 
   @override
   void initState() {
@@ -28,7 +26,7 @@ class _ResidentesMorososScreenState extends State<ResidentesMorososScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Residentes Morosos'),
+        title: Text('Lista de Alquileres vigentes'),
         // actions: [
         //   IconButton(
         //       tooltip: 'Agregar Usuario de la Junta Administrativa',
@@ -40,7 +38,7 @@ class _ResidentesMorososScreenState extends State<ResidentesMorososScreen> {
       ),
 
       body: obtenerInformacion(
-          context, variableshabitantesmorosos.ConsultarHabitantesMorosos()),
+          context, variableshabitantespazysalvo.ConsultarAlquilerSalonEvento()),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -76,7 +74,8 @@ Widget obtenerInformacion(BuildContext context, Stream<QuerySnapshot> ct) {
           if (snapshot.hasError) return Text('Error: ${snapshot.error}');
           // print(snapshot.data);
           return snapshot.data != null
-              ? VistaCoopropietarios(coopropietarios: snapshot.data!.docs)
+              ? VistaCoopropietarios(
+                  coopropietarios: snapshot.data!.docs)
               : Text('Sin Datos');
 
         /*
@@ -100,16 +99,21 @@ class VistaCoopropietarios extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: coopropietarios.length == 0 ? 0 : coopropietarios.length,
+        itemCount:
+            coopropietarios.length == 0 ? 0 : coopropietarios.length,
         itemBuilder: (context, posicion) {
           print(coopropietarios[posicion].id);
           // print(juntaadministrativa[posicion].nombre);
           return ListTile(
             onTap: () {
-              Get.to(() => PagoResidenteMoroso(
-                  perfil: coopropietarios,
-                  pos: posicion,
-                  iddoc: coopropietarios[posicion].id));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (BuildContext context) =>
+              //             ModificarJuntaAdministrativa(
+              //                 perfil: juntaadministrativa,
+              //                 pos: posicion,
+              //                 iddoc: juntaadministrativa[posicion].id)));
             },
             onLongPress: () {
               // //   ServicesJuntaAdministrativa.eliminarJuntaAdmin(juntaadministrativa[posicion].id);
@@ -121,15 +125,16 @@ class VistaCoopropietarios extends StatelessWidget {
               size: 30,
             )),
             title: Text(coopropietarios[posicion]['nombrecoopropietarios']),
-            subtitle: Text(coopropietarios[posicion]['pagoscoopropietarios']),
-            trailing: Column(
-              children: <Widget>[
+            subtitle: Text(coopropietarios[posicion]['nombreservicioalquiler']),
+             trailing: Column(
+               children:<Widget> [
                 Text("Casa"),
-                Text(
-                    coopropietarios[posicion]['numeroviviendacoopropietarios']),
-              ],
-            ),
+                Text(coopropietarios[posicion]['numeroviviendacoopropietarios']),
+                 
+               ],
+             ),
           );
+        
         });
   }
 

@@ -7,10 +7,13 @@ import 'package:propiedadh_firebase/ui/screens/authentication/login/perfil_guard
 import 'package:propiedadh_firebase/ui/screens/authentication/login/editar_perfil.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/listado_juntaadministrativa.dart';
 
+
+import 'screens/chat/Authenticate/LoginScree.dart';
 import 'screens/copropietarios_screens/agregar_coopropietarios.dart';
 import 'screens/copropietarios_screens/listado_coopropietarios.dart';
 import 'screens/gestion_pagos/gestion_pagos_screen.dart';
 import 'screens/juntaadministrativa_screens/agregar_juntaadministrativa.dart';
+
 
 
 class Home extends StatefulWidget {
@@ -82,6 +85,10 @@ class _HomeState extends State<Home> {
                 height: 30,
               ),
               GestionDePagos(),
+              SizedBox(
+                height: 30,
+              ),
+              ChatHorizontal(),
             ],
           ),
         ),
@@ -201,7 +208,7 @@ class GestionDePagos extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
             color: Colors.lightBlueAccent,
             image: DecorationImage(
-                image: AssetImage('assets/propietarios.png'),
+                image: AssetImage('assets/pagos.png'),
                 fit: BoxFit.fill)),
         child: Container(
           decoration: BoxDecoration(
@@ -212,6 +219,7 @@ class GestionDePagos extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              
               Text(
                 "Gestion de Pagos",
                 style: TextStyle(
@@ -220,7 +228,56 @@ class GestionDePagos extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(
-                height: 210,
+                height: 215,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ChatHorizontal extends StatelessWidget {
+  const ChatHorizontal({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+          Get.to(() => LoginChatScreen());
+       
+      },
+      child: Container(
+        width: double.infinity,
+        height: 250,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: Colors.lightBlueAccent,
+            image: DecorationImage(
+                image: AssetImage('assets/chat.png'),
+                fit: BoxFit.fill)),
+        child: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(begin: Alignment.bottomRight, colors: [
+            Colors.white.withOpacity(.2),
+            Colors.white12.withOpacity(.1),
+          ])),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              
+              Text(
+                "Chat Horizontal",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 215,
               ),
             ],
           ),

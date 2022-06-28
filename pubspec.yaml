@@ -43,6 +43,8 @@ dependencies:
   firebase_auth: 3.3.5
   image_picker: 0.8.4+1
   firebase_storage: 10.0.6
+  printing: ^5.6.0
+  uuid: ^3.0.4
   
 
 dev_dependencies:
@@ -83,6 +85,9 @@ flutter:
     - assets/personas2.png
     - assets/usuarios.png
     - assets/fondo_perfil.jpg
+    - assets/image.png
+    - assets/pagos.png
+    - assets/chat.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

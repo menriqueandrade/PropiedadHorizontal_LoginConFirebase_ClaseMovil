@@ -5,6 +5,8 @@ class Coopropietarios {
   final String cedula;
   final String numerovivienda;
   final String cuotaspendientes;
+  final String pagoalquiler;
+  final String nombredealquiler;
 
 
   Coopropietarios({
@@ -14,6 +16,8 @@ class Coopropietarios {
     required this.cedula,
     required this.numerovivienda,
     required this.cuotaspendientes,
+    required this.pagoalquiler,
+    required this.nombredealquiler,
 
   });
 
@@ -25,6 +29,8 @@ class Coopropietarios {
       cedula: json['cedula'],
       numerovivienda: json['numerovivienda'],
       cuotaspendientes: json['cuotaspendientes'],
+      pagoalquiler: json['pagosalquilercoop'],
+      nombredealquiler: json['nombrealquilercoop'],
     );
   }
 }

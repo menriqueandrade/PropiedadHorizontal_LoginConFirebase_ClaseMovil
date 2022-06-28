@@ -1,22 +1,23 @@
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:propiedadh_firebase/services/coopropietarios_services/search_coopropietarios.dart';
 import 'package:propiedadh_firebase/services/juntaadministrativa_services.dart';
 import 'package:propiedadh_firebase/services/search.dart';
+import 'package:propiedadh_firebase/ui/screens/home/screens/copropietarios_screens/agregar_coopropietarios.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/agregar_juntaadministrativa.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/editar_juntaadministrativa.dart';
 
+import 'pago_residente_moroso_screen.dart';
 
-class Listado_JuntaAdministrativa extends StatefulWidget {
- 
-
+class ResidentesMorososScreen extends StatefulWidget {
   @override
-  _Listado_JuntaAdministrativaState createState() => _Listado_JuntaAdministrativaState();
+  _ResidentesMorososScreenState createState() =>
+      _ResidentesMorososScreenState();
 }
 
-class _Listado_JuntaAdministrativaState extends State<Listado_JuntaAdministrativa> {
-  Peticiones2 variablesjuntaadmin = Get.find();
+class _ResidentesMorososScreenState extends State<ResidentesMorososScreen> {
+  PeticionesCoop variableshabitantesmorosos = Get.find();
 
   @override
   void initState() {
@@ -47,7 +48,7 @@ class _Listado_JuntaAdministrativaState extends State<Listado_JuntaAdministrativ
               ],
             ),
             title: Center(
-                child: Text("Junta adminstrativa",
+                child: Text("Habitantes Morosos",
                     style: TextStyle(color: Colors.lightBlue))),
             actions: <Widget>[
               Padding(
@@ -68,14 +69,14 @@ class _Listado_JuntaAdministrativaState extends State<Listado_JuntaAdministrativ
             ],
           ),
 
-      body: obtenerInformacion(context, variablesjuntaadmin.readItemsJuntaAdmin()),
+      body: obtenerInformacion(
+          context, variableshabitantesmorosos.ConsultarHabitantesMorosos()),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            
-            Get.to(() => AgregarJuntaAdministrativa());
-            
+            Get.to(() => AgregarCoopropietarios());
+
             //obtenerInformacion(context, variablesjuntaadmin.readItemsJuntaAdmin());
           });
         },
@@ -105,7 +106,7 @@ Widget obtenerInformacion(BuildContext context, Stream<QuerySnapshot> ct) {
           if (snapshot.hasError) return Text('Error: ${snapshot.error}');
           // print(snapshot.data);
           return snapshot.data != null
-              ? VistaJuntaAdministrativa(juntaadministrativa: snapshot.data!.docs)
+              ? VistaCoopropietarios(coopropietarios: snapshot.data!.docs)
               : Text('Sin Datos');
 
         /*
@@ -118,79 +119,74 @@ Widget obtenerInformacion(BuildContext context, Stream<QuerySnapshot> ct) {
           return Text('Presiona el boton para recargar');
       }
     },
-    
   );
-
-  
 }
 
-class VistaJuntaAdministrativa extends StatelessWidget {
-  
-  final List juntaadministrativa;
+class VistaCoopropietarios extends StatelessWidget {
+  final List coopropietarios;
 
-   VistaJuntaAdministrativa({required this.juntaadministrativa});
+  VistaCoopropietarios({required this.coopropietarios});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: juntaadministrativa.length == 0 ? 0 : juntaadministrativa.length,
+        itemCount: coopropietarios.length == 0 ? 0 : coopropietarios.length,
         itemBuilder: (context, posicion) {
-           print(juntaadministrativa[posicion].id);
+          print(coopropietarios[posicion].id);
           // print(juntaadministrativa[posicion].nombre);
-           return ListTile(
-              onTap: () {
-                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => ModificarJuntaAdministrativa(
-                          perfil: juntaadministrativa,
-                          pos: posicion,
-                          iddoc: juntaadministrativa[posicion].id)));
-
-               
-              },
-              onLongPress: () {
-                //   ServicesJuntaAdministrativa.eliminarJuntaAdmin(juntaadministrativa[posicion].id);
-               confirmaeliminarUsuario(context, juntaadministrativa[posicion].id);
-              },
-              leading: CircleAvatar(
-                  child: FlutterLogo(
-                size: 30,
-              )),
-               title: Text(
-                 juntaadministrativa[posicion]['nombrejuntaadmin']
-               ),
-              subtitle: Text(juntaadministrativa[posicion]['roljuntaadmin']),
-           //   trailing: CircleAvatar(child: Text(juntaadministrativa[posicion].rol))
-              );
-      
-         
+          return ListTile(
+            onTap: () {
+              Get.to(() => PagoResidenteMoroso(
+                  perfil: coopropietarios,
+                  pos: posicion,
+                  iddoc: coopropietarios[posicion].id));
+            },
+            onLongPress: () {
+              // //   ServicesJuntaAdministrativa.eliminarJuntaAdmin(juntaadministrativa[posicion].id);
+              // confirmaeliminarUsuario(
+              //     context, coopropietarios[posicion].id);
+            },
+            leading: CircleAvatar(
+                child: FlutterLogo(
+              size: 30,
+            )),
+            title: Text(coopropietarios[posicion]['nombrecoopropietarios']),
+            subtitle: Text(coopropietarios[posicion]['pagoscoopropietarios']),
+            trailing: Column(
+              children: <Widget>[
+                Text("Casa"),
+                Text(
+                    coopropietarios[posicion]['numeroviviendacoopropietarios']),
+              ],
+            ),
+          );
         });
   }
+
   void confirmaeliminarUsuario(context, ideliminar) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        content: Text('Realmente Desea Eliminar?'),
-        actions: <Widget>[
-          ElevatedButton(
-            child: Icon(Icons.cancel),
-            onPressed: () => Navigator.pop(context),
-          ),
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text('Realmente Desea Eliminar?'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: Icon(Icons.cancel),
+              onPressed: () => Navigator.pop(context),
             ),
-            child: Icon(Icons.check_circle),
-            onPressed: () {
-              ServicesJuntaAdministrativa.eliminarJuntaAdmin(ideliminar);
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+              ),
+              child: Icon(Icons.check_circle),
+              onPressed: () {
+                ServicesJuntaAdministrativa.eliminarJuntaAdmin(ideliminar);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

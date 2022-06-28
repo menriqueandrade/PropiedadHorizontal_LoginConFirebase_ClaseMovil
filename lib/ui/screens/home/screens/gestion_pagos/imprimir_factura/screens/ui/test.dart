@@ -1,20 +1,27 @@
+// ignore_for_file: prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:propiedadh_firebase/services/coopropietarios_services/coopropietarios_service.dart';
 import 'package:propiedadh_firebase/services/coopropietarios_services/search_coopropietarios.dart';
 import 'package:propiedadh_firebase/services/juntaadministrativa_services.dart';
 import 'package:propiedadh_firebase/services/search.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/copropietarios_screens/agregar_coopropietarios.dart';
+import 'package:propiedadh_firebase/ui/screens/home/screens/gestion_pagos/imprimir_factura/components/image_builder.dart';
+import 'package:propiedadh_firebase/ui/screens/home/screens/gestion_pagos/imprimir_factura/components/spacer.dart';
+import 'package:propiedadh_firebase/ui/screens/home/screens/gestion_pagos/imprimir_factura/screens/widgets/invoice_table.dart';
+import 'package:propiedadh_firebase/ui/screens/home/screens/gestion_pagos/imprimir_factura/screens/widgets/save_btn.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/agregar_juntaadministrativa.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/editar_juntaadministrativa.dart';
 
-class Listado_Coopropietarios extends StatefulWidget {
+class Testx extends StatefulWidget {
   @override
-  _Listado_CoopropietariosState createState() =>
-      _Listado_CoopropietariosState();
+  _TestxState createState() =>
+      _TestxState();
 }
 
-class _Listado_CoopropietariosState extends State<Listado_Coopropietarios> {
+class _TestxState extends State<Testx> {
   PeticionesCoop variablescoop = Get.find();
 
   @override
@@ -25,50 +32,9 @@ class _Listado_CoopropietariosState extends State<Listado_Coopropietarios> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            leading: Row(
-              children: [
-                Container(
-                  height: 60,
-                  width: 50,
-                  child: IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                    ),
-                    color: Colors.lightBlue,
-                  ),
-                ),
-              ],
-            ),
-            title: Center(
-                child: Text("Listado de Coopropietarios",
-                    style: TextStyle(color: Colors.lightBlue))),
-            actions: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(0.0),
-                child: Center(
-                  child: Container(
-                    width: 50,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                      child: Icon(Icons.check),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-
+    
       body: obtenerInformacion(
-          context, variablescoop.readItemsCoopropietarios()),
+          context, variablescoop.ConsultaFacturaUsuario()),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -128,42 +94,47 @@ class VistaCoopropietarios extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ServicesCoopropietarios controls = Get.find();
     return ListView.builder(
         itemCount:
-            coopropietarios.length == 0 ? 0 : coopropietarios.length,
+            1,
         itemBuilder: (context, posicion) {
           print(coopropietarios[posicion].id);
           // print(juntaadministrativa[posicion].nombre);
-          return ListTile(
-            onTap: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (BuildContext context) =>
-              //             ModificarJuntaAdministrativa(
-              //                 perfil: juntaadministrativa,
-              //                 pos: posicion,
-              //                 iddoc: juntaadministrativa[posicion].id)));
-            },
-            onLongPress: () {
-              // //   ServicesJuntaAdministrativa.eliminarJuntaAdmin(juntaadministrativa[posicion].id);
-              // confirmaeliminarUsuario(
-              //     context, coopropietarios[posicion].id);
-            },
-            leading: CircleAvatar(
-                child: FlutterLogo(
-              size: 30,
-            )),
-            title: Text(coopropietarios[posicion]['nombrecoopropietarios']),
-            subtitle: Text(coopropietarios[posicion]['pagoscoopropietarios']),
-             trailing: Column(
-               children:<Widget> [
-                Text("Casa"),
-                Text(coopropietarios[posicion]['numeroviviendacoopropietarios']),
-                 
-               ],
-             ),
-          );
+          return Column(
+              children: <Widget> [
+                Text("Pago de Factura",
+                    style: TextStyle(
+                        fontSize: 25.00, fontWeight: FontWeight.bold)),
+                HeightSpacer(myHeight: 10.00),
+                Divider(),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: ImageBuilder(
+                    imagePath: "assets/image.png",
+                    imgWidth: 250,
+                    imgheight: 250,
+                  ),
+                ),
+                InvoiceBuilder(
+                          perfil: coopropietarios,
+                          pos: posicion,
+                          iddoc: coopropietarios[posicion].id),
+                HeightSpacer(myHeight: 15.00),
+                Text(
+                 "TS",
+                  style: TextStyle(color: Colors.grey, fontSize: 15.00),
+                ),
+                HeightSpacer(myHeight: 5.00),
+                Text(
+                  "Contact the branch for any clarifications.",
+                  // ignore: prefer_const_constructors
+                  style: TextStyle(color: Colors.grey, fontSize: 15.00),
+                ),
+                HeightSpacer(myHeight: 15.00),
+                SaveBtnBuilder(),
+              ],
+            );
 
         });
   }

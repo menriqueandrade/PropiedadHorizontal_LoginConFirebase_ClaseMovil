@@ -26,9 +26,45 @@ class _AgregarJuntaAdministrativaState
         home: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
-            centerTitle: true,
             backgroundColor: Colors.transparent,
             elevation: 0,
+            leading: Row(
+              children: [
+                Container(
+                  height: 60,
+                  width: 50,
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                    ),
+                    color: Colors.lightBlue,
+                  ),
+                ),
+              ],
+            ),
+            title: Center(
+                child: Text("Agregar Junta Administrativa",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)))),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(0.0),
+                child: Center(
+                  child: Container(
+                    width: 50,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlue,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                      child: Icon(Icons.check),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           body: Center(
             child: Stack(

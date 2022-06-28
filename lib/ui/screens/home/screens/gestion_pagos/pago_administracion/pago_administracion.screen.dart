@@ -8,13 +8,13 @@ import 'package:propiedadh_firebase/ui/screens/home/screens/copropietarios_scree
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/agregar_juntaadministrativa.dart';
 import 'package:propiedadh_firebase/ui/screens/home/screens/juntaadministrativa_screens/editar_juntaadministrativa.dart';
 
-class Listado_Coopropietarios extends StatefulWidget {
+class PagoAdministracionScreen extends StatefulWidget {
   @override
-  _Listado_CoopropietariosState createState() =>
-      _Listado_CoopropietariosState();
+  _PagoAdministracionScreenState createState() =>
+      _PagoAdministracionScreenState();
 }
 
-class _Listado_CoopropietariosState extends State<Listado_Coopropietarios> {
+class _PagoAdministracionScreenState extends State<PagoAdministracionScreen> {
   PeticionesCoop variablescoop = Get.find();
 
   @override
@@ -25,7 +25,7 @@ class _Listado_CoopropietariosState extends State<Listado_Coopropietarios> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
+      appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
             leading: Row(
@@ -46,7 +46,7 @@ class _Listado_CoopropietariosState extends State<Listado_Coopropietarios> {
               ],
             ),
             title: Center(
-                child: Text("Listado de Coopropietarios",
+                child: Text("Pago de Administracion",
                     style: TextStyle(color: Colors.lightBlue))),
             actions: <Widget>[
               Padding(
@@ -150,7 +150,9 @@ class VistaCoopropietarios extends StatelessWidget {
               // confirmaeliminarUsuario(
               //     context, coopropietarios[posicion].id);
             },
+            // ignore: prefer_const_constructors
             leading: CircleAvatar(
+                // ignore: prefer_const_constructors
                 child: FlutterLogo(
               size: 30,
             )),
@@ -164,7 +166,35 @@ class VistaCoopropietarios extends StatelessWidget {
                ],
              ),
           );
+          // return Card(
+          //   elevation: 2,
+          //   child: Container(
+          //     padding: const EdgeInsets.only(
+          //         top: 4.0, bottom: 16.0, left: 8.0, right: 8.0),
+          //     child: Column(
+          //       crossAxisAlignment: CrossAxisAlignment.stretch,
+          //       children: [
+          //         Row(
+          //           children: [
+          //             Text((juntaadministrativa[posicion]['nombre'])),
 
+          //           ],
+          //         ),
+          //         const SizedBox(
+          //           height: 6.0,
+          //         ),
+          //         Padding(
+          //           padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          //           child: Text('Titulo'),
+          //         ),
+          //         Padding(
+          //           padding: const EdgeInsets.only(top: 18.0),
+          //           child: Text('Detalle'),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // );
         });
   }
 

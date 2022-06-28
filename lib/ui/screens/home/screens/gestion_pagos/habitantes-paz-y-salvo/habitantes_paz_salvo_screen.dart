@@ -25,17 +25,47 @@ class _ResidentesPazySalvoState extends State<ResidentesPazySalvo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Residentes Paz y salvo'),
-        // actions: [
-        //   IconButton(
-        //       tooltip: 'Agregar Usuario de la Junta Administrativa',
-        //       icon: Icon(Icons.add),
-        //       onPressed: () {
-
-        //       })
-        // ],
-      ),
+     appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: Row(
+              children: [
+                Container(
+                  height: 60,
+                  width: 50,
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                    ),
+                    color: Colors.lightBlue,
+                  ),
+                ),
+              ],
+            ),
+            title: Center(
+                child: Text("Habitantes Paz y salvo",
+                    style: TextStyle(color: Colors.lightBlue))),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(0.0),
+                child: Center(
+                  child: Container(
+                    width: 50,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlue,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                      child: Icon(Icons.check),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
 
       body: obtenerInformacion(
           context, variableshabitantespazysalvo.ConsultarHabitantesPazySalvo()),

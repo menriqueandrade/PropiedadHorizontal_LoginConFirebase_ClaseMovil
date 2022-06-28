@@ -22,6 +22,9 @@ class _AgregarCoopropietariosState
   TextEditingController _controladorCedula = TextEditingController();
   TextEditingController _controladorNumerovivienda = TextEditingController();
   TextEditingController _controladorCuotasp = TextEditingController();
+  TextEditingController _controlPagoAlquiler = TextEditingController();
+  TextEditingController _controlNombreAlquiler = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +34,45 @@ class _AgregarCoopropietariosState
         home: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
-            centerTitle: true,
             backgroundColor: Colors.transparent,
             elevation: 0,
+            leading: Row(
+              children: [
+                Container(
+                  height: 60,
+                  width: 50,
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                    ),
+                    color: Colors.lightBlue,
+                  ),
+                ),
+              ],
+            ),
+            title: Center(
+                child: Text("Agregar Coopropietarios",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)))),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(0.0),
+                child: Center(
+                  child: Container(
+                    width: 50,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlue,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                      child: Icon(Icons.check),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           body: Center(
             child: Stack(
@@ -79,12 +118,25 @@ class _AgregarCoopropietariosState
                           padding: const EdgeInsets.all(8.0),
                           child:
                               _TextFieldCuotaspendientes(controladorCuotasp: _controladorCuotasp)),
+                      
+                       Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:
+                              _TextFieldPagoAlquiler(controlPagoAlquiler: _controlPagoAlquiler)),
+                       Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:
+                              _TextFieldNombreAlquiler(controlNombreAlquiler: _controlNombreAlquiler)),
                       _ButtonEntrar(
                         controladorNombre: _controladorNombre,
                         controladorPago: _controladorPago,
                         controladorCedula: _controladorCedula,
                         controladorNumerovivienda: _controladorNumerovivienda,
-                        controladorCuota:_controladorCuotasp
+                        controladorCuota:_controladorCuotasp,
+                        controlPagoAlquiler: _controlPagoAlquiler,
+                        controlNombreAlquiler:_controlNombreAlquiler
+
+ 
                       )
                     ],
                   ),
@@ -275,6 +327,78 @@ class _TextFieldCuotaspendientes extends StatelessWidget {
   }
 }
 
+class _TextFieldPagoAlquiler extends StatelessWidget {
+  const _TextFieldPagoAlquiler({
+    Key? key,
+    required TextEditingController controlPagoAlquiler,
+  })  : _controlPagoAlquiler = controlPagoAlquiler,
+        super(key: key);
+
+  final TextEditingController _controlPagoAlquiler;
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return TextFormField(
+           enabled: false,
+          keyboardType: TextInputType.emailAddress,
+          controller: _controlPagoAlquiler,
+          style: TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            labelText: 'Valor de alquiler',
+            hintText: "100.000",
+            hintStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            filled: true,
+            labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            suffix: GestureDetector(
+              child: Icon(Icons.close),
+              onTap: () {
+                _controlPagoAlquiler.clear();
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _TextFieldNombreAlquiler extends StatelessWidget {
+  const _TextFieldNombreAlquiler({
+    Key? key,
+    required TextEditingController controlNombreAlquiler,
+  })  : _controlNombreAlquiler = controlNombreAlquiler,
+        super(key: key);
+
+  final TextEditingController _controlNombreAlquiler;
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return TextFormField(
+           enabled: false,
+          keyboardType: TextInputType.emailAddress,
+          controller: _controlNombreAlquiler,
+          style: TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            labelText: 'Nombre del servicio',
+            hintText: "Ejm: Salon de eventos",
+            hintStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            filled: true,
+            labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            suffix: GestureDetector(
+              child: Icon(Icons.close),
+              onTap: () {
+                _controlNombreAlquiler.clear();
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
 class _ButtonEntrar extends StatelessWidget {
   bool bandera = false;
 
@@ -285,12 +409,17 @@ class _ButtonEntrar extends StatelessWidget {
     required TextEditingController controladorCedula,
     required TextEditingController controladorNumerovivienda,
     required TextEditingController controladorCuota,
+    required TextEditingController controlPagoAlquiler,  
+     required TextEditingController controlNombreAlquiler, 
+ 
     
   })  : _controladorNombre = controladorNombre,
         _controladorPago = controladorPago,
          _controladorCedula = controladorCedula,
         _controladorNumerovivienda = controladorNumerovivienda,
         _controladorCuotasp = controladorCuota,
+        _controlPagoAlquiler = controlPagoAlquiler,
+        _controlNombreAlquiler = controlNombreAlquiler,
 
         super(key: key);
 
@@ -299,6 +428,8 @@ class _ButtonEntrar extends StatelessWidget {
    final TextEditingController _controladorCedula;
   final TextEditingController _controladorNumerovivienda;
    final TextEditingController _controladorCuotasp;
+    final TextEditingController _controlPagoAlquiler;
+   final TextEditingController _controlNombreAlquiler;
 
   @override
   Widget build(BuildContext context) {
@@ -313,6 +444,8 @@ class _ButtonEntrar extends StatelessWidget {
                     'cedulacoopropietarios': _controladorCedula.text,
                     'numeroviviendacoopropietarios': _controladorNumerovivienda.text,
                     'cuotascoopropietarios': _controladorCuotasp.text,
+                    'nombreservicioalquiler': _controlNombreAlquiler.text,
+                    'pagosalquilercoop': _controlPagoAlquiler.text,
                   
                   };
 
