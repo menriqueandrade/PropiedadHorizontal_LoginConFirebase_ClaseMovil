@@ -102,58 +102,60 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(50.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // CircleAvatar(
-              //     radius: 100.0,
-              //     backgroundImage: NetworkImage(
-              //         'https://login.gov/assets/img/login-gov-288x288.png')),
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: emailuser,
-                decoration: InputDecoration(hintText: 'Ingrese el Email'),
-              ),
-              TextField(
-                controller: passwuser,
-                obscureText: true,
-                decoration: InputDecoration(hintText: 'Password'),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        if (connectivityController.connected) {
-                          _inicio(emailuser.text, passwuser.text);
-                        } else {
-                          GetSnackBar(
-                            title: 'No esta conectado a un Red',
-                            duration: Duration(seconds: 5),
-                          );
-                        }
-                      },
-                      icon: Icon(Icons.login)),
-                  IconButton(
-                      onPressed: () {
-                        if (connectivityController.connected) {
-                          _login(emailuser.text, passwuser.text);
-                        } else {
-                          GetSnackBar(
-                            title: 'No esta conectado a un Red',
-                            duration: Duration(seconds: 5),
-                          );
-                        }
-                      },
-                      icon: Icon(Icons.app_registration))
-                ],
-              )
-            ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(50.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                 CircleAvatar(
+                     radius: 100.0,
+                     backgroundImage: NetworkImage(
+                         'https://login.gov/assets/img/login-gov-288x288.png')),
+                SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  controller: emailuser,
+                  decoration: InputDecoration(hintText: 'Ingrese el Email'),
+                ),
+                TextField(
+                  controller: passwuser,
+                  obscureText: true,
+                  decoration: InputDecoration(hintText: 'Password'),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          if (connectivityController.connected) {
+                            _inicio(emailuser.text, passwuser.text);
+                          } else {
+                            GetSnackBar(
+                              title: 'No esta conectado a un Red',
+                              duration: Duration(seconds: 5),
+                            );
+                          }
+                        },
+                        icon: Icon(Icons.login)),
+                    IconButton(
+                        onPressed: () {
+                          if (connectivityController.connected) {
+                            _login(emailuser.text, passwuser.text);
+                          } else {
+                            GetSnackBar(
+                              title: 'No esta conectado a un Red',
+                              duration: Duration(seconds: 5),
+                            );
+                          }
+                        },
+                        icon: Icon(Icons.app_registration))
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

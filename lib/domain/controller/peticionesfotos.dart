@@ -38,6 +38,7 @@ class PeticionesFotos {
     print('url:' + url.toString());
     return url.toString();
   }
+  
 
   static Future<void> actualizarcatalogo(
       String id, Map<String, dynamic> catalogo) async {

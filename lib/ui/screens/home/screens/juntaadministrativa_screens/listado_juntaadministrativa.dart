@@ -154,9 +154,10 @@ class VistaJuntaAdministrativa extends StatelessWidget {
                confirmaeliminarUsuario(context, juntaadministrativa[posicion].id);
               },
               leading: CircleAvatar(
-                  child: FlutterLogo(
-                size: 30,
-              )),
+                  radius: 30,
+                  backgroundImage:
+                      NetworkImage( juntaadministrativa[posicion]['foto'], scale: 1),
+                ),
                title: Text(
                  juntaadministrativa[posicion]['nombrejuntaadmin']
                ),

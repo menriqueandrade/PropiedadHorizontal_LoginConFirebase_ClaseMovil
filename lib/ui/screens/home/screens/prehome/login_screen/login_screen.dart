@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                      radius: 200.0,
+                      radius: 65.0,
                       backgroundImage: AssetImage('assets/logou.jpg')),
                   SizedBox(
                     height: 20,
